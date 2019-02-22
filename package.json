@@ -1,0 +1,26 @@
+{
+  "name": "aframe-super-hot-loader",
+  "version": "1.0.0",
+  "description": "A-Frame Webpack loader for hot component replacement.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supermedium/aframe-super-hot-loader.git"
+  },
+  "author": "Kevin Ngo <kevin@supermedium.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/supermedium/aframe-super-hot-loader/issues"
+  },
+  "homepage": "https://github.com/supermedium/aframe-super-hot-loader#readme",
+  "dependencies": {
+    "loader-utils": "^1.2.3"
+  },
+  "devDependencies": {
+    "memory-fs": "^0.4.1",
+    "webpack": "^4.29.5"
+  }
+}
