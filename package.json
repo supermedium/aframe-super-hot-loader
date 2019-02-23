@@ -1,11 +1,8 @@
 {
   "name": "aframe-super-hot-loader",
-  "version": "1.0.0",
-  "description": "A-Frame Webpack loader for hot component replacement.",
+  "version": "1.1.1",
+  "description": "Webpack loader for hot reloading A-Frame components and shaders.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/supermedium/aframe-super-hot-loader.git"
@@ -17,7 +14,8 @@
   },
   "homepage": "https://github.com/supermedium/aframe-super-hot-loader#readme",
   "dependencies": {
-    "loader-utils": "^1.2.3"
+    "loader-utils": "^1.2.3",
+    "nunjucks": "^3.1.7"
   },
   "devDependencies": {
     "memory-fs": "^0.4.1",
