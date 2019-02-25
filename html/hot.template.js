@@ -29,7 +29,8 @@ if (module.hot) {
     const newScene = document.createElement('div');
     newScene.innerHTML = html;
 
-    const diff = diffdom.diff(oldScene.children[0], newScene.children[0]);
+    const diff = diffdom.diff(oldScene.querySelector('a-scene'),
+                              newScene.querySelector('a-scene'));
     diffdom.apply(document.querySelector('a-scene'), diff);
   }
 
