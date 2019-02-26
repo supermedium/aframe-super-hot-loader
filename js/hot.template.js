@@ -20,8 +20,9 @@ if (module.hot) {
     componentNames.forEach(component => {
       // Unregister.
       delete AFRAME.components[component];
-      const els = document.querySelectorAll(`[${component}]`);
+      const els = AFRAME.scenes[0].querySelectorAll(`[${component}]`);
       for (let i = 0; i < els.length; i++) {
+        if (!els[i].isEntity) { continue; }
         // Store data.
         els[i].dataset[`__hot__${component}`] = JSON.stringify(
           els[i].getDOMAttribute(component));
@@ -33,9 +34,11 @@ if (module.hot) {
     shaderNames.forEach(shader => {
       // Unregister.
       delete AFRAME.shaders[shader];
-      const els = document.querySelectorAll(`[material]`);
+      const els = AFRAME.scenes[0].querySelectorAll(`[material]`);
       for (let i = 0; i < els.length; i++) {
+        if (!els[i].isEntity) { continue; }
         // Store data.
+        if (els[i].getAttribute('material').shader !== shader) { continue; }
         els[i].dataset['__hot__material'] = JSON.stringify(
           els[i].getDOMAttribute('material'));
         // Detach material.
