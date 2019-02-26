@@ -18,8 +18,9 @@ if (module.hot) {
   ];
 
   // Clean up from application when module is unloaded.
-  module.hot.dispose(() => {
+  module.hot.dispose(data => {
     let els;
+    data.needsReplace = true;
 
     componentNames.forEach(component => {
       // Unregister.
@@ -56,32 +57,27 @@ if (module.hot) {
     });
   });
 
-  module.hot.addStatusHandler(status => {
-    if (module.hot.status() !== 'ready') { return; }
-
-    // Called after module is reloaded.
-    module.hot.apply().then(() => {
-      // Apply component back to entities.
-      componentNames.forEach(componentName => {
-        const dataAttrName = `data-__hot-${componentName}`;
-        const els = document.querySelectorAll(`[${dataAttrName}]`);
-        for (let i = 0; i < els.length; i++) {
-          els[i].setAttribute(componentName, JSON.parse(els[i].getAttribute(dataAttrName)));
-          els[i].removeAttribute(dataAttrName);
-        }
-      });
-
-      // Apply materials back.
-      componentNames.forEach(componentName => {
-        const dataAttrName = 'data-__hot-material';
-        const els = document.querySelectorAll(`[${dataAttrName}]`);
-        for (let i = 0; i < els.length; i++) {
-          els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
-          els[i].removeAttribute(dataAttrName);
-        }
-      });
+  if (module.hot.data && module.hot.data.needsReplace) {
+    // Apply component back to entities.
+    componentNames.forEach(componentName => {
+      const dataAttrName = `data-__hot-${componentName}`;
+      const els = document.querySelectorAll(`[${dataAttrName}]`);
+      for (let i = 0; i < els.length; i++) {
+        els[i].setAttribute(componentName, JSON.parse(els[i].getAttribute(dataAttrName)));
+        els[i].removeAttribute(dataAttrName);
+      }
     });
-  });
+
+    // Apply materials back.
+    componentNames.forEach(componentName => {
+      const dataAttrName = 'data-__hot-material';
+      const els = document.querySelectorAll(`[${dataAttrName}]`);
+      for (let i = 0; i < els.length; i++) {
+        els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
+        els[i].removeAttribute(dataAttrName);
+      }
+    });
+  }
 
   module.hot.accept();
 }
