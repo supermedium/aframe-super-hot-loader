@@ -59,3 +59,17 @@ module.exports = {
   }
 };
 ```
+
+### Example
+
+There's a boilerplate example in the `examples/` directory:
+
+```
+cd examples
+npm install
+npm run start
+```
+
+Then try it out by modifying files. If you'd like to incorporate into your own
+project, you can start from that boilerplate base and / or absorb the Webpack
+configuration.
