@@ -9,6 +9,8 @@ HTML, components, and shaders.
 Live reload A-Frame, components, and shaders. Never refresh the page during
 development again!
 
+**[Watch Video](https://youtu.be/uh_RQay3x80)**
+
 ### Usage
 
 ```
