@@ -8,18 +8,25 @@ const componentRegex = new RegExp(
 const shaderRegex = new RegExp(
   `registerShader${whitespace}\\(${whitespace}${string}`,
   'g');
+const systemRegex = new RegExp(
+  `registerSystem${whitespace}\\(${whitespace}${string}`,
+  'g');
 
 const nunjucks = Nunjucks.configure(__dirname, {noCache: true});
 
 module.exports = function (source) {
   const componentNames = getComponentNames(source);
   const shaderNames = getShaderNames(source);
+  const systemNames = getSystemNames(source);
 
-  if (!componentNames.length && !shaderNames.length) { return source; }
+  if (!componentNames.length && !shaderNames.length && !systemNames.length) {
+    return source;
+  }
 
   return source + nunjucks.render('hot.template.js', {
     componentNames: componentNames,
-    shaderNames: shaderNames
+    shaderNames: shaderNames,
+    systemNames: systemNames
   });
 }
 
@@ -40,4 +47,12 @@ function getShaderNames (source) {
   }
   return shaderNames;
 }
-module.exports.getShaderNames = getShaderNames;
+
+function getSystemNames (source) {
+  const systemNames = [];
+  let match = null
+  while (match = systemRegex.exec(source)) {
+    systemNames.push(match[1]);
+  }
+  return systemNames;
+}

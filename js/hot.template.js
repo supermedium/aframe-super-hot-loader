@@ -11,7 +11,11 @@ if (module.hot) {
     {%- endfor -%}
   ];
 
-  module.hot.accept();
+  const systemNames = [
+    {%- for system in systemNames -%}
+      '{{ system }}',
+    {%- endfor -%}
+  ];
 
   // Clean up from application when module is unloaded.
   module.hot.dispose(() => {
@@ -24,8 +28,8 @@ if (module.hot) {
       for (let i = 0; i < els.length; i++) {
         if (!els[i].isEntity) { continue; }
         // Store data.
-        els[i].dataset[`__hot__${component}`] = JSON.stringify(
-          els[i].getDOMAttribute(component));
+        els[i].setAttribute(`data-__hot-${component}`,
+                            JSON.stringify(els[i].getDOMAttribute(component)));
         // Detach component.
         els[i].removeAttribute(component);
       }
@@ -39,11 +43,16 @@ if (module.hot) {
         if (!els[i].isEntity) { continue; }
         // Store data.
         if (els[i].getAttribute('material').shader !== shader) { continue; }
-        els[i].dataset['__hot__material'] = JSON.stringify(
-          els[i].getDOMAttribute('material'));
+        els[i].setAttribute('data-__hot-material', JSON.stringify(
+          els[i].getDOMAttribute('material')));
         // Detach material.
         els[i].removeAttribute('material');
       }
+    });
+
+    systemNames.forEach(system=> {
+      delete AFRAME.systems[system];
+      delete AFRAME.scenes[0].systems[system];
     });
   });
 
@@ -54,22 +63,25 @@ if (module.hot) {
     module.hot.apply().then(() => {
       // Apply component back to entities.
       componentNames.forEach(componentName => {
-        const dataName = `__hot__${componentName}`;
-        const els = document.querySelectorAll(`[data-${dataName}]`);
+        const dataAttrName = `data-__hot-${componentName}`;
+        const els = document.querySelectorAll(`[${dataAttrName}]`);
         for (let i = 0; i < els.length; i++) {
-          els[i].setAttribute(componentName, JSON.parse(els[i].dataset[dataName]));
-          els[i].removeAttribute(`data-${dataName}`);
+          els[i].setAttribute(componentName, JSON.parse(els[i].getAttribute(dataAttrName)));
+          els[i].removeAttribute(dataAttrName);
         }
       });
 
       // Apply materials back.
       componentNames.forEach(componentName => {
-        const els = document.querySelectorAll(`[data-__hot__material]`);
+        const dataAttrName = 'data-__hot-material';
+        const els = document.querySelectorAll(`[${dataAttrName}]`);
         for (let i = 0; i < els.length; i++) {
-          els[i].setAttribute('material', JSON.parse(els[i].dataset['__hot__material']));
-          els[i].removeAttribute(`data-__hot__material`);
+          els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
+          els[i].removeAttribute(dataAttrName);
         }
       });
     });
   });
+
+  module.hot.accept();
 }
