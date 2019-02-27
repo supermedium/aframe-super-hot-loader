@@ -60,6 +60,27 @@ module.exports = {
 };
 ```
 
+For the HTML loader, you'll need to require an HTML file through Webpack that contains your scene, which will be injected into your index.html.
+
+```
+// index.js
+require('./scene.html');
+```
+
+And an example HTML file:
+
+```
+<!-- index.html -->
+<html>
+  <head>
+    <script src="build/build.js"></script>
+  </head>
+  <body>
+    <!-- require('./scene.html') will be injected here from the JS build. -->
+  </body>
+</html>
+```
+
 ### Example
 
 There's a boilerplate example in the `examples/` directory:
