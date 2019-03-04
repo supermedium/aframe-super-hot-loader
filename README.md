@@ -17,7 +17,7 @@ development again!
 
 ```
 npm install --save aframe-super-hot-loader
-npm install --save aframe-super-hot-html-loader
+npm install --save aframe-super-hot-html-loader diff-dom
 ```
 
 #### Webpack Config
