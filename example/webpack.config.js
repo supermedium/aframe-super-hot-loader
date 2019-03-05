@@ -75,6 +75,12 @@ module.exports = {
               },
               path: process.env.NUNJUCKS_PATH || path.join(__dirname, 'src')
             }
+          },
+          {
+           loader: 'html-require-loader',
+            options: {
+              root: path.resolve(__dirname, 'src')
+            }
           }
         ]
       },
