@@ -9,6 +9,8 @@ HTML, components, and shaders.
 Live reload A-Frame, components, and shaders. Never refresh the page during
 development again!
 
+**[Watch Video](https://youtu.be/uh_RQay3x80)**
+
 ### Usage
 
 ```
@@ -57,3 +59,17 @@ module.exports = {
   }
 };
 ```
+
+### Example
+
+There's a boilerplate example in the `examples/` directory:
+
+```
+cd examples
+npm install
+npm run start
+```
+
+Then try it out by modifying files. If you'd like to incorporate into your own
+project, you can start from that boilerplate base and / or absorb the Webpack
+configuration.
