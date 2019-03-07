@@ -69,14 +69,13 @@ if (module.hot) {
     });
 
     // Apply materials back.
-    componentNames.forEach(componentName => {
-      const dataAttrName = 'data-__hot-material';
-      const els = document.querySelectorAll(`[${dataAttrName}]`);
-      for (let i = 0; i < els.length; i++) {
-        els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
-        els[i].removeAttribute(dataAttrName);
-      }
-    });
+    const dataAttrName = 'data-__hot-material';
+    const els = document.querySelectorAll(`[${dataAttrName}]`);
+    for (let i = 0; i < els.length; i++) {
+      console.log(JSON.parse(els[i].getAttribute(dataAttrName)));
+      els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
+      els[i].removeAttribute(dataAttrName);
+    }
   }
 
   module.hot.accept();
