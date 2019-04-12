@@ -47,3 +47,4 @@ dump.rdb
 .ghpages
 play.html
 .html.map.json
+package-lock.json
