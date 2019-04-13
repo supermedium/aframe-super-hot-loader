@@ -63,7 +63,7 @@ if (module.hot) {
       const dataAttrName = `data-__hot-${componentName}`;
       const els = document.querySelectorAll(`[${dataAttrName}]`);
       for (let i = 0; i < els.length; i++) {
-        els[i].setAttribute(componentName, JSON.parse(els[i].getAttribute(dataAttrName)));
+        els[i].setAttribute(componentName, JSON.parse(els[i].getAttribute(dataAttrName)), true);
         els[i].removeAttribute(dataAttrName);
       }
     });
@@ -72,8 +72,7 @@ if (module.hot) {
     const dataAttrName = 'data-__hot-material';
     const els = document.querySelectorAll(`[${dataAttrName}]`);
     for (let i = 0; i < els.length; i++) {
-      console.log(JSON.parse(els[i].getAttribute(dataAttrName)));
-      els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)));
+      els[i].setAttribute('material', JSON.parse(els[i].getAttribute(dataAttrName)), true);
       els[i].removeAttribute(dataAttrName);
     }
   }
