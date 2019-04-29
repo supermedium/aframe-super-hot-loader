@@ -52,8 +52,6 @@
     "snazzy": "7.0.0",
     "style-loader": "^0.23.1",
     "super-nunjucks-loader": "*",
-    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
-    "uglifyjs-webpack-plugin": "0.4.6",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.5",
     "webpack-cli": "3.2.3",

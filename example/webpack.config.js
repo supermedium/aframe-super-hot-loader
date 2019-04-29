@@ -9,38 +9,6 @@ PLUGINS = [
   new webpack.HotModuleReplacementPlugin()
 ];
 
-if (process.env.NODE_ENV === 'production') {
-  PLUGINS.push(
-    new MinifyPlugin(
-      {
-        booleans: true,
-        builtIns: true,
-        consecutiveAdds: true,
-        deadcode: true,
-        evaluate: false,
-        flipComparisons: true,
-        guards: true,
-        infinity: true,
-        mangle: false,
-        memberExpressions: true,
-        mergeVars: true,
-        numericLiterals: true,
-        propertyLiterals: true,
-        regexpConstructors: true,
-        removeUndefined: true,
-        replace: true,
-        simplify: true,
-        simplifyComparisons: true,
-        typeConstructors: true,
-        undefinedToVoid: true,
-        keepFnName: true,
-        keepClassName: true,
-        tdz: true
-      }
-    )
-  );
-}
-
 module.exports = {
   devServer: {
     disableHostCheck: true,
