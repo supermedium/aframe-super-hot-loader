@@ -1,4 +1,4 @@
-if (module.hot) {
+if (module.hot && window.AFRAME) {
   const componentNames = [
     {%- for component in componentNames -%}
       '{{ component }}',
