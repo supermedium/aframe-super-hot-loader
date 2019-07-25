@@ -31,6 +31,13 @@ if (module.hot) {
 
     const diff = diffdom.diff(oldScene, newScene);
     diffdom.apply(document.getElementById('app'), diff);
+
+    Array.from(newScene.querySelectorAll('template')).forEach(template => {
+      const liveTemplate = document.getElementById(template.id);
+      if (liveTemplate.innerHTML === template.innerHTML) { return; }
+      liveTemplate.innerHTML = template.innerHTML;
+      liveTemplate.dispatchEvent(new CustomEvent('templatemutate'));
+    });
   }
 
   // Store HTML for next module to diff.
