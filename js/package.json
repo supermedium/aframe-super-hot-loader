@@ -14,11 +14,11 @@
   },
   "homepage": "https://github.com/supermedium/aframe-super-hot-loader#readme",
   "dependencies": {
-    "loader-utils": "^1.2.3",
+    "loader-utils": "^3.2.1",
     "nunjucks": "^3.1.7"
   },
   "devDependencies": {
     "memory-fs": "^0.4.1",
-    "webpack": "^4.29.5"
+    "webpack": "^5.75.0"
   }
 }
