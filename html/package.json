@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "memory-fs": "^0.4.1",
-    "webpack": "^4.29.5"
+    "webpack": "^5.75.0"
   }
 }
